@@ -32,6 +32,25 @@ Alternatively, you can download the latest `.unitypackage` from the Google Play 
 
 To request features or report issues with the plugin, please use the [GitHub issue tracker](https://github.com/google/play-core-unity/issues).
 
+## Known Issues
+### Play Core library conflicts
+
+When building an Android App Bundle with Unity's build system (e.g. "File > Build and Run"), Unity may include the
+[monolithic Play Core library](https://maven.google.com/web/index.html?q=core#com.google.android.play:core) in a way that
+causes conflicts with the [new Play libraries](https://developer.android.com/reference/com/google/android/play/core/release-notes#partitioned-apis)
+included by Google Play Plugins for Unity.
+
+To resolve these conflicts, follow the steps below:
+
+1. Enable "Custom Main Gradle Template" in "Android Player > Publishing Settings"
+2. Enable "Patch mainTemplate.gradle" in "Assets > External Dependency Manager > Android Resolver > Settings"
+3. Include [this](https://dl.google.com/games/registry/unity/com.google.play.core/playcore_empty_m2repo.zip) empty monolithic
+Play Core library as a local maven repository
+
+These steps will allow [EDM4U](https://github.com/googlesamples/unity-jar-resolver) to update the mainTemplate.gradle to
+include the empty monolithic Play Core library as a gradle dependency. This will override the version of the Play Core library
+included by Unity and resolve the duplicate class errors and manifest merger failures.
+
 ## Data Collection
 
 When you upload a game using this plugin to Google Play, Google collects the following data to help improve our products and services:
