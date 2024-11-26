@@ -68,4 +68,3 @@
 ### New Features
  - Initial release
  - Includes playcore.aar version 1.7.1
-
