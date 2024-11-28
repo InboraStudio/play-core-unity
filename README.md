@@ -13,6 +13,7 @@ This plugin is a support plugin and does not provide any Play in-app features on
 ### Required Unity Version
 
 To use the Google Play Core plugin, you must use a supported Unity version:
+
 - All versions of Unity 2019.x, 2020.x, and newer are supported.
 - If you use Unity 2018.x, version 2018.4 or newer are supported.
 - If you use Unity 2017.x, only Unity 2017.4.40 is supported. All other versions aren't supported.
@@ -20,11 +21,12 @@ To use the Google Play Core plugin, you must use a supported Unity version:
 ### Required Play Plugins
 
 The following Google Play plugin will be installed automatically when you install the Google Play Core plugin using OpenUPM or when importing the package from GitHub:
+
 - [External Dependency Manager plugin for Unity (EDM4U)](https://github.com/googlesamples/unity-jar-resolver). This plugin resolves AAR dependencies such as the Play Core library.
 
 ## Install the Plugin
 
-To install the Google Play Asset Delivery plugin using Open UPM, follow the instructions to [install via package manager](https://openupm.com/packages/com.google.play.core/#modal-manualinstallation) or [install via command-line](https://openupm.com/packages/com.google.play.core/#modal-commandlinetool).
+To install the Google Play Core plugin using Open UPM, follow the instructions to [install via package manager](https://openupm.com/packages/com.google.play.core/#modal-manualinstallation) or [install via command-line](https://openupm.com/packages/com.google.play.core/#modal-commandlinetool).
 
 Alternatively, you can download the latest `.unitypackage` from the Google Play Core plugin [GitHub releases page](https://github.com/google/play-core-unity/releases) and import it [using these instructions](https://developers.google.com/unity/instructions#install-unitypackage) on the Google APIs for Unity site.
 
@@ -50,17 +52,6 @@ Play Core library as a local maven repository
 These steps will allow [EDM4U](https://github.com/googlesamples/unity-jar-resolver) to update the mainTemplate.gradle to
 include the empty monolithic Play Core library as a gradle dependency. This will override the version of the Play Core library
 included by Unity and resolve the duplicate class errors and manifest merger failures.
-
-## Data Collection
-
-When you upload a game using this plugin to Google Play, Google collects the following data to help improve our products and services:
-- Package name
-- Version number
-- Google Play Plugin version number
-
-To opt-out of this data collection, remove the `packagename.metadata.jar` file found under each plugin's `Runtime/Plugins` folder.
-
-**Note:** This data collection is independent of Google’s collection of library dependencies declared in Gradle when you upload your game to Google Play.
 
 ## Related Plugins
 
