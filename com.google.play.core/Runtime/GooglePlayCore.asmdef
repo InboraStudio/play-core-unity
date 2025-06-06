@@ -1,0 +1,14 @@
+{
+    "name": "Google.Play.Core",
+    "references": [],
+    "versionDefines": [
+        {
+            "name": "Unity",
+            "expression": "6000.0",
+            "define": "UNITY_6000_OR_NEWER"
+        }
+    ],
+    "includePlatforms": [
+        "Android"
+    ]
+}

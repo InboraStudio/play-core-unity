@@ -16,7 +16,7 @@ using System;
 using UnityEngine;
 
 namespace Google.Play.Core.Internal
-{
+{ 
     /// <summary>
     /// Wraps Play Services Task which represent asynchronous operations.
     /// Allows C# classes to register callbacks for when a task succeeds or fails.
@@ -28,6 +28,10 @@ namespace Google.Play.Core.Internal
     public class PlayServicesTask<TAndroidJava> : IDisposable
     {
         private readonly AndroidJavaObject _javaTask;
+        
+        #if UNITY_6000_OR_NEWER
+        private bool _isDisposed;
+        #endif
 
         public PlayServicesTask(AndroidJavaObject javaTask)
         {
@@ -37,6 +41,10 @@ namespace Google.Play.Core.Internal
             }
 
             _javaTask = javaTask;
+            
+            #if UNITY_6000_OR_NEWER
+            Debug.Log($"Initializing PlayServicesTask for type {typeof(TAndroidJava)}");
+            #endif
         }
 
         /// <summary>
@@ -47,10 +55,18 @@ namespace Google.Play.Core.Internal
         /// </param>
         public void RegisterOnSuccessCallback(Action<TAndroidJava> onSuccess)
         {
+            #if UNITY_6000_OR_NEWER
+            if (_isDisposed)
+            {
+                Debug.LogError("Cannot register callback on disposed PlayServicesTask");
+                return;
+            }
+            #endif
+
             var listenerProxy = new TaskOnSuccessListener<TAndroidJava>();
             listenerProxy.OnTaskSucceeded += onSuccess;
             AddOnSuccessListener(listenerProxy);
-        }
+        } 
 
         /// <summary>
         /// Register a callback that will fire when the underlying Play Services Task fails.
@@ -69,16 +85,52 @@ namespace Google.Play.Core.Internal
 
         private void AddOnSuccessListener(AndroidJavaProxy listenerProxy)
         {
+            #if UNITY_6000_OR_NEWER
+            try
+            {
+                using (var result = _javaTask.Call<AndroidJavaObject>("addOnSuccessListener", listenerProxy))
+                {
+                    // Result automatically disposed by using block
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Unity 6000+: Error adding success listener: {e.Message}");
+            }
+            #else
             _javaTask.Call<AndroidJavaObject>("addOnSuccessListener", listenerProxy).Dispose();
+            #endif
         }
 
         private void AddOnFailureListener(AndroidJavaProxy listenerProxy)
         {
+            #if UNITY_6000_OR_NEWER
+            try
+            {
+                using (var result = _javaTask.Call<AndroidJavaObject>("addOnFailureListener", listenerProxy))
+                {
+                    // Result automatically disposed by using block
+                }
+            }
+            catch (Exception e)
+            {
+                Debug.LogError($"Unity 6000+: Error adding failure listener: {e.Message}");
+            }
+            #else
             _javaTask.Call<AndroidJavaObject>("addOnFailureListener", listenerProxy).Dispose();
+            #endif
         }
 
         public void Dispose()
         {
+            #if UNITY_6000_OR_NEWER
+            if (_isDisposed)
+            {
+                return;
+            }
+            _isDisposed = true;
+            #endif
+
             _javaTask.Dispose();
         }
     }

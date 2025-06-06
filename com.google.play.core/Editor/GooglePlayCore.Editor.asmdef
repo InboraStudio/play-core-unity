@@ -1,0 +1,23 @@
+{
+    "name": "Google.Play.Core.Editor",
+    "rootNamespace": "Google.Play.Core.Editor",
+    "references": [
+        "Google.Play.Core"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [
+        {
+            "name": "Unity",
+            "expression": "6000.0",
+            "define": "UNITY_6000_OR_NEWER"
+        }
+    ]
+}

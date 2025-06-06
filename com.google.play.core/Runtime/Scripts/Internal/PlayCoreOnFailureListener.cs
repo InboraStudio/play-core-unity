@@ -14,7 +14,7 @@
 
 using System;
 using UnityEngine;
-
+ 
 namespace Google.Play.Core.Internal
 {
     /// <summary>

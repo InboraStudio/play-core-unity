@@ -23,7 +23,7 @@ namespace Google.Play.Core.Internal
     public static class PlayCoreHelper
     {
         /// <summary>
-        /// Converts the specified AndroidJavaObject representing a "java.util.List" into a C# List.
+        /// Converts the specified AndroidJavaObject representing a "java.util.List" into a C# List. 
         /// </summary>
         /// <typeparam name="TAndroidJava">
         /// The type of the objects in the returned list.

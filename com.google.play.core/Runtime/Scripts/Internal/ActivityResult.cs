@@ -27,7 +27,7 @@ namespace Google.Play.Core.Internal
         public const int ResultOk = -1;
 
         /// <summary>
-        /// Operation cancelled.
+        /// Operation cancelled. 
         /// </summary>
         public const int ResultCancelled = 0;
 

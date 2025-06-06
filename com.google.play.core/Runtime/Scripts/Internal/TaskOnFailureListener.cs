@@ -18,7 +18,7 @@ using UnityEngine;
 namespace Google.Play.Core.Internal
 {
     /// <summary>
-    /// Proxy for Play Services Task's OnFailureListener class.
+    /// Proxy for Play Services Task's OnFailureListener class. 
     /// Allows C# classes to be alerted when a Play Core Task throws an exception.
     /// </summary>
     public class TaskOnFailureListener : AndroidJavaProxy
@@ -32,7 +32,7 @@ namespace Google.Play.Core.Internal
         // Proxied java calls. Method names are camelCase to match the corresponding java methods.
         public void onFailure(AndroidJavaObject exception)
         {
-            var message = exception.Call<string>("getMessage");
+            var message = exception.Call<string>("getMessage");  
 
             int errorCode;
             try
